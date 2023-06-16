@@ -8,10 +8,5 @@
 }
 
 .background{
-  background: rgb(9, 121, 87);
-  background: linear-gradient(
-    311deg,
-    rgba(9, 121, 87, 1) 0%,
-    rgba(0, 212, 255, 1) 100%
-  );
+  background-image: url("/images/bg.svg");
 }
