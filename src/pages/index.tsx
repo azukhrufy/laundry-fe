@@ -68,8 +68,7 @@ export default function Home() {
                     </Text>
                     <Flex alignItems="center" my={43} gap={8}>
                       <Button
-                        color="white"
-                        background="#FF5A05"
+                        colorScheme="brand.complementary"
                         variant="solid"
                         size="lg"
                         px={30}
