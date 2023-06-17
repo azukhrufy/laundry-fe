@@ -1,11 +1,11 @@
 import SidebarWithHeader from "@/components/layout/dashboard";
 
-const Dashboard = () => {
+const Home = () => {
   return (
     <SidebarWithHeader>
-      <div>Dashboard</div>
+      <div>Home</div>
     </SidebarWithHeader>
   );
 };
 
-export default Dashboard;
+export default Home;

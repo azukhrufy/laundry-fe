@@ -15,6 +15,11 @@ const colors = {
   ...chakraTheme.colors,
   brand :{
     primary: {
+      50 : '#e9e9fe',
+      100: '#c7c8fb',
+      200: '#a1a4f9',
+      300: '#7680f8',
+      400: '#5561f5',
       500: '#2E43F0'
     },
     secondary : {
