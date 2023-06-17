@@ -42,8 +42,8 @@ interface LinkItemProps {
   link?: string;
 }
 const LinkItems: Array<LinkItemProps> = [
-  { name: "Home", icon: FiHome, link: '/dashboard/home' },
-  { name: "Transaction", icon: FiTrendingUp, link: '/dashboard/transaction' },
+  { name: "Home", icon: FiHome, link: "/dashboard/home" },
+  { name: "Transaction", icon: FiTrendingUp, link: "/dashboard/transaction" },
   { name: "Master Data", icon: FiList },
   { name: "Settings", icon: FiSettings },
 ];
@@ -110,11 +110,12 @@ const MobileNav = ({ onOpen, ...rest }: MobileProps) => {
 
       <Text
         display={{ base: "flex", md: "none" }}
-        fontSize="2xl"
-        fontFamily="monospace"
+        fontSize="xl"
         fontWeight="bold"
+        color="brand.primary.500"
+        lineHeight={1}
       >
-        Logo
+        iLaundry
       </Text>
 
       <HStack spacing={{ base: "0", md: "6" }}>
@@ -135,7 +136,7 @@ const MobileNav = ({ onOpen, ...rest }: MobileProps) => {
                 <Avatar
                   size={"sm"}
                   src={
-                    "https://images.unsplash.com/photo-1619946794135-5bc917a27793?ixlib=rb-0.3.5&q=80&fm=jpg&crop=faces&fit=crop&h=200&w=200&s=b616b2c5b373a80ffc9636ba24f7a4a9"
+                    "https://z-m-scontent.fcgk9-2.fna.fbcdn.net/v/t1.18169-9/12670484_1695308580757387_5879267640628321681_n.jpg?stp=cp0_dst-jpg_e15_fr_q65&_nc_cat=104&ccb=1-7&_nc_sid=85a577&_nc_ohc=LyJ0_l6dzw4AX-lrgi_&_nc_ad=z-m&_nc_cid=1225&_nc_eh=c201384f5ea0b048a3f72f81853832bb&_nc_rml=0&_nc_ht=z-m-scontent.fcgk9-2.fna&oh=00_AfD9l7xxzeBftPtrLm-_dDDRlAkOIvSMJhBDIHFHW29-ZQ&oe=64B5660C"
                   }
                 />
                 <VStack
@@ -144,7 +145,7 @@ const MobileNav = ({ onOpen, ...rest }: MobileProps) => {
                   spacing="1px"
                   ml="2"
                 >
-                  <Text fontSize="sm">Justina Clark</Text>
+                  <Text fontSize="sm">Uwa Tere</Text>
                   <Text fontSize="xs" color="gray.600">
                     Admin
                   </Text>
