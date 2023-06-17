@@ -13,10 +13,29 @@ const fonts = {
 
 const colors = {
   ...chakraTheme.colors,
-  
+  brand :{
+    primary: {
+      500: '#2E43F0'
+    },
+    secondary : {
+      500: '#FF5A05'
+    },
+    complementary : {
+      300: '#f9d053',
+      400: '#f7c531',
+      500: '#f6bb1c',
+      600: '#f6ae17',
+      700: '#f59d15'
+    }
+
+  }
+   
 }
 
 // declare a variable for our theme and pass our overrides in the e`xtendTheme` method from chakra
-const theme = extendTheme(fonts)
+const theme = extendTheme({
+  fonts : fonts,
+  colors: colors
+})
 
 export default theme;

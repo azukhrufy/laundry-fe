@@ -1,7 +1,11 @@
-const Dashboard = () => {
-    return(
-        <div>Dashboard</div>
-    )
-}
+import SidebarWithHeader from "@/components/layout/dashboard";
 
-export default Dashboard
+const Dashboard = () => {
+  return (
+    <SidebarWithHeader>
+      <div>Dashboard</div>
+    </SidebarWithHeader>
+  );
+};
+
+export default Dashboard;
