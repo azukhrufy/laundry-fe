@@ -35,17 +35,21 @@ import {
 import { IconType } from "react-icons";
 import { ReactText } from "react";
 import SidebarContent from "./SidebarContent";
+import LinkItemProps from "@/types/LinkItems";
 
-interface LinkItemProps {
-  name: string;
-  icon: IconType;
-  link?: string;
-}
 const LinkItems: Array<LinkItemProps> = [
   { name: "Home", icon: FiHome, link: "/dashboard/home" },
   { name: "Transaction", icon: FiTrendingUp, link: "/dashboard/transaction" },
-  { name: "Master Data", icon: FiList },
-  { name: "Settings", icon: FiSettings },
+  {
+    name: "Master Data",
+    icon: FiList,
+    link: '/dashboard/data',
+    submenu: [
+      { name: "Services", link: "/dashboard/data/services" },
+      { name: "Pelanggan", link: "/dashboard/data/pelanggan" },
+    ],
+  },
+  { name: "Settings", icon: FiSettings, link: '/dashboard/settings' },
 ];
 
 export default function SidebarWithHeader({
