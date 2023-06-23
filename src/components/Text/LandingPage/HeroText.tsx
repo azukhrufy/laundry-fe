@@ -2,7 +2,7 @@ import { Box, Button, Divider, Flex, Text } from "@chakra-ui/react";
 
 const HeroText = () => {
   return (
-    <Box px={{base : 15, md: 5}}>
+    <Box px={{base : 15, md: 5, lg: 10}}>
       <Text fontWeight="semibold" color="white" letterSpacing={2}>
         COMING SOON
       </Text>
