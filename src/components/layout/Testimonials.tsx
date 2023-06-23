@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 export default function WithLargeQuote() {
   return (
     <Stack
-      bg={useColorModeValue("gray.50", "gray.800")}
+      bg='#FFF9F5'
       py={16}
       px={8}
       spacing={{ base: 8, md: 10 }}
@@ -20,6 +20,13 @@ export default function WithLargeQuote() {
           ease: [0, 0.71, 0.2, 1.01],
         }}
       >
+        <Text
+        fontSize={{ base: "2xl", md: "4xl" }}
+        textAlign={"center"}
+        color='#FF5A05'
+        >
+          Our Testimonials
+        </Text>
         <Text
           fontSize={{ base: "xl", md: "2xl" }}
           textAlign={"center"}

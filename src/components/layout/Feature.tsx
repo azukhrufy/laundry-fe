@@ -9,6 +9,7 @@ import {
   Text,
   useColorModeValue,
 } from "@chakra-ui/react";
+import { motion } from "framer-motion";
 import { ReactElement } from "react";
 import {
   FcAbout,
@@ -66,6 +67,15 @@ export default function gridListWith() {
   return (
     <Box p={4}>
       <Flex flexDir='column' minH={{ md: "100vh" }} justifyContent={{md: 'center'}} alignItems={{md: 'center'}}>
+      <motion.div
+            initial={{ opacity: 0, scale: 0.5 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            transition={{
+              duration: 0.8,
+              delay: 0.5,
+              ease: [0, 0.71, 0.2, 1.01],
+            }}
+          >
         <Stack spacing={4} as={Container} maxW={"3xl"} textAlign={"center"}>
           <Heading fontSize={{ base: "2xl", sm: "4xl" }} fontWeight={"bold"}>
             Nikmati berbagai kemudahan
@@ -75,7 +85,17 @@ export default function gridListWith() {
             bisnis laundry anda.
           </Text>
         </Stack>
+        </motion.div>
 
+        <motion.div
+            initial={{ opacity: 0, scale: 0.5 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            transition={{
+              duration: 0.8,
+              delay: 0.5,
+              ease: [0, 0.71, 0.2, 1.01],
+            }}
+          >
         <Container maxW={"5xl"} mt={12}>
           <Flex flexWrap="wrap" gridGap={6} justify="center">
             <Card
@@ -102,6 +122,7 @@ export default function gridListWith() {
             />
           </Flex>
         </Container>
+        </motion.div>
       </Flex>
     </Box>
   );

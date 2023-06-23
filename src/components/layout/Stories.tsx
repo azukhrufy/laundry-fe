@@ -64,15 +64,15 @@ export default function SplitWithImage() {
             <Stack spacing={4}>
               <Text
                 textTransform={"uppercase"}
-                color={"blue.400"}
+                color={"brand.primary.500"}
                 fontWeight={600}
                 fontSize={"sm"}
-                bg={useColorModeValue("blue.50", "blue.900")}
+                bg={useColorModeValue("brand.primary.50", "brand.primary.500")}
                 p={2}
                 alignSelf={"flex-start"}
                 rounded={"md"}
               >
-                Our Story
+                Get Started
               </Text>
               <Heading>Mulai digitalisasikan bisnis laundry anda!</Heading>
               <Text color={"gray.500"} fontSize={"lg"}>
