@@ -1,3 +1,4 @@
+import HeroText from "@/components/Text/LandingPage/HeroText";
 import {
   Box,
   Button,
@@ -28,85 +29,70 @@ export default function Home() {
               </div>
             </div>
           </div>
-          <div className="flex flex-row justify-around">
-            <div className="left flex flex-col items-center justify-center h-[100vh] text-left">
+          {/* base display */}
+          <Box display={{ base: "block", md: "none" }} paddingTop='120' minH='100vh'>
+            <Flex flexDirection="column" justifyContent="center" alignItems='center' gap='8'>
               <motion.div
-                initial={{ opacity: 0, scale: 0.5 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{
-                  duration: 0.8,
-                  delay: 0.5,
-                  ease: [0, 0.71, 0.2, 1.01],
-                }}
-              >
-                <div className="text-left">
-                  <Box maxW={400}>
-                    <Text fontWeight="semibold" color="white" letterSpacing={2}>
-                      COMING SOON
-                    </Text>
-                    <Text
-                      fontWeight="bold"
-                      fontSize={61}
-                      color="white"
-                      lineHeight={1.2}
-                    >
-                      Semuanya
-                    </Text>
-                    <Text
-                      fontWeight="semibold"
-                      fontSize={50}
-                      lineHeight={1.2}
-                      color="white"
-                    >
-                      Dalam 1 Aplikasi
-                    </Text>
-                    <Divider color="white" my={15} />
-                    <Text fontWeight="semibold" color="white" opacity="70%">
-                      iLaundry merupakan aplikasi berbasis web dan mobile yang
-                      menjadi all in one solution untuk kebutuhan usaha laundry
-                      anda
-                    </Text>
-                    <Flex alignItems="center" my={43} gap={8}>
-                      <Button
-                        colorScheme="brand.complementary"
-                        variant="solid"
-                        size="lg"
-                        px={30}
-                        py={15}
-                      >
-                        Get Started
-                      </Button>
-                      <Button
-                        variant="outline"
-                        color="white"
-                        size="lg"
-                        px={30}
-                        py={15}
-                      >
-                        Free Trial
-                      </Button>
-                    </Flex>
-                  </Box>
-                </div>
-              </motion.div>
-            </div>
-            <div className="left flex col items-center justify-center">
-              {/* <Box boxSize={600}> */}
-              <motion.div
-                initial={{ opacity: 0, scale: 0.5 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{
-                  duration: 0.8,
-                  delay: 0.5,
-                  ease: [0, 0.71, 0.2, 1.01],
-                }}
-              >
-                <Image src="/images/example.svg" width={600} />
-              </motion.div>
+                  initial={{ opacity: 0, scale: 0.5 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{
+                    duration: 0.8,
+                    delay: 0.5,
+                    ease: [0, 0.71, 0.2, 1.01],
+                  }}
+                >
+                  <Image src="/images/example.svg" width={{base : 300, md: 600}} justifyContent='center' />
+                </motion.div>
 
-              {/* </Box> */}
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.5 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{
+                    duration: 0.8,
+                    delay: 0.5,
+                    ease: [0, 0.71, 0.2, 1.01],
+                  }}
+                >
+                  <div className="text-center">
+                    <HeroText />
+                  </div>
+                </motion.div>
+            </Flex>
+          </Box>
+          <Box display={{ base: "none", md: "block" }} pt='8'>
+            <div className="flex flex-row justify-around">
+              <div className="left flex flex-1 flex-col items-center justify-center h-[100vh] text-left">
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.5 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{
+                    duration: 0.8,
+                    delay: 0.5,
+                    ease: [0, 0.71, 0.2, 1.01],
+                  }}
+                >
+                  <div className="text-left">
+                    <HeroText />
+                  </div>
+                </motion.div>
+              </div>
+              <div className="left flex flex-1 col items-center justify-center">
+                {/* <Box boxSize={600}> */}
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.5 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{
+                    duration: 0.8,
+                    delay: 0.5,
+                    ease: [0, 0.71, 0.2, 1.01],
+                  }}
+                >
+                  <Image src="/images/example.svg" width={600} px={{md: 5}} />
+                </motion.div>
+                {/* </Box> */}
+              </div>
             </div>
-          </div>
+          </Box>
         </div>
       </div>
     </>
