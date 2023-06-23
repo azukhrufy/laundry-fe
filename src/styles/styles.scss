@@ -9,4 +9,10 @@
 
 .background{
   background-image: url("/images/bg.svg");
+  background-repeat: repeat-y;
+}
+
+.background-2{
+  background-image: url("/images/bg2.png");
+  background-repeat: repeat-y;
 }
