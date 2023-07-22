@@ -39,28 +39,28 @@ export default function Home() {
             gap={{ md: 2, xl: 4 }}
             flexWrap="wrap"
           >
-            {cardItems.map((item, key) => (
+            {cardItems.map((item) => (
               <StatsCard
                 icon={item.icon}
                 title={item.title}
                 data={item.data}
                 color={item.color}
                 display={{ base: "none", md: "block" }}
-                key={key}
+                key={item.data}
               />
             ))}
           </Grid>
         </Box>
         <Box display={{ base: "block", md: "none" }}>
           <Grid templateColumns="repeat(2, 1fr)" gap={4}>
-            {cardItems.map((item, key) => (
+            {cardItems.map((item) => (
               <StatsCardMobile
                 icon={item.icon}
                 title={item.title}
                 data={item.data}
                 color={item.color}
                 display={{ base: "block", md: "none" }}
-                key={key}
+                key={item.data}
               />
             ))}
           </Grid>
