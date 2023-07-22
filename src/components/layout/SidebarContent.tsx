@@ -17,8 +17,9 @@ import {
   useColorModeValue,
 } from "@chakra-ui/react";
 import { useRouter } from "next/router";
-import { ReactText } from "react";
+import { ReactText, useEffect } from "react";
 import { IconType } from "react-icons";
+import LoadingOverlay from "../LoadingOverlay";
 
 interface SidebarProps extends BoxProps {
   onClose: () => void;
