@@ -17,15 +17,32 @@ import {
   useColorModeValue,
 } from "@chakra-ui/react";
 import { useRouter } from "next/router";
-import { ReactText, useEffect } from "react";
+import { ReactText } from "react";
 import { IconType } from "react-icons";
-import LoadingOverlay from "../LoadingOverlay";
 
 interface SidebarProps extends BoxProps {
   onClose: () => void;
   LinkItems: Array<LinkItemProps>;
 }
+interface NavItemProps extends FlexProps {
+  icon: IconType;
+  children: ReactText;
+  active?: Boolean;
+  href?: string;
+  submenu?: Array<SubmenuItemProps>;
+}
 
+/**
+ * Represents the sidebar content with navigation items and a logo for the iLaundry app.
+ *
+ * @typedef {object} SidebarProps - The properties for the SidebarContent component.
+ * @property {() => void} SidebarProps.onClose - The function to be called when the sidebar is closed.
+ * @property {Array<LinkItemProps>} SidebarProps.LinkItems - An array of LinkItemProps representing the navigation items.
+ *
+ * @param {SidebarProps} props - The properties for the SidebarContent component.
+ *
+ * @returns {JSX.Element} The rendered JSX element representing the sidebar content.
+ */
 const SidebarContent = ({ onClose, LinkItems, ...rest }: SidebarProps) => {
   const router = useRouter();
   return (
@@ -71,13 +88,20 @@ const SidebarContent = ({ onClose, LinkItems, ...rest }: SidebarProps) => {
   );
 };
 
-interface NavItemProps extends FlexProps {
-  icon: IconType;
-  children: ReactText;
-  active?: Boolean;
-  href?: string;
-  submenu?: Array<SubmenuItemProps>;
-}
+/**
+ * Represents a navigation item in the sidebar with an icon and optional submenu.
+ *
+ * @typedef {object} NavItemProps - The properties for the NavItem component.
+ * @property {IconType} NavItemProps.icon - The IconType from react-icons representing the icon for the navigation item.
+ * @property {ReactText} NavItemProps.children - The text content for the navigation item.
+ * @property {Boolean} [NavItemProps.active] - Optional boolean flag indicating if the navigation item is currently active (for styling).
+ * @property {string} [NavItemProps.href] - Optional string representing the URL for the navigation item.
+ * @property {Array<SubmenuItemProps>} [NavItemProps.submenu] - Optional array of SubmenuItemProps representing the submenu items.
+ *
+ * @param {NavItemProps} props - The properties for the NavItem component.
+ *
+ * @returns {JSX.Element} The rendered JSX element representing the navigation item.
+ */
 const NavItem = ({
   icon,
   children,
@@ -94,9 +118,8 @@ const NavItem = ({
           <AccordionItem border={0}>
             <Flex
               align="center"
-              
               mx="4"
-              mb='2'
+              mb="2"
               borderRadius="lg"
               role="group"
               cursor="pointer"
@@ -104,8 +127,14 @@ const NavItem = ({
                 bg: "brand.primary.500",
                 color: "white",
               }}
-              bg={router.asPath.indexOf(href!) > -1 ? "brand.primary.50" : "unset"}
-              color={router.asPath.indexOf(href!) > -1 ? "brand.primary.500" : "unset"}
+              bg={
+                router.asPath.indexOf(href!) > -1 ? "brand.primary.50" : "unset"
+              }
+              color={
+                router.asPath.indexOf(href!) > -1
+                  ? "brand.primary.500"
+                  : "unset"
+              }
               {...rest}
             >
               <AccordionButton p="4">
@@ -133,9 +162,9 @@ const NavItem = ({
                   <Flex
                     align="center"
                     px="4"
-                    py='2'
+                    py="2"
                     ml="8"
-                    mb='2'
+                    mb="2"
                     borderRadius="lg"
                     role="group"
                     cursor="pointer"
@@ -144,11 +173,12 @@ const NavItem = ({
                       color: "white",
                     }}
                     bg={router.asPath === s.link ? "brand.primary.50" : "unset"}
-                    color={router.asPath === s.link ? "brand.primary.500" : "unset"}
+                    color={
+                      router.asPath === s.link ? "brand.primary.500" : "unset"
+                    }
                     {...rest}
-
                   >
-                    <Text fontSize='sm'>{s.name}</Text>
+                    <Text fontSize="sm">{s.name}</Text>
                   </Flex>
                 </Link>
               </AccordionPanel>

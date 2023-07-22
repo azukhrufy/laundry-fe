@@ -1,9 +1,6 @@
-import { ReactNode } from "react";
 import {
   Card,
-  CardHeader,
   CardBody,
-  CardFooter,
   Text,
   Flex,
   Icon,
@@ -19,6 +16,18 @@ interface StatsCardProps extends BoxProps {
   color?: string;
 }
 
+/**
+ * Represents a statistics card for mobile view with an icon, title, and data.
+ *
+ * @param {object} props - The properties for the StatsCardMobile component.
+ * @param {IconType} props.icon - The IconType from react-icons to be displayed as the icon.
+ * @param {string} props.title - The title or label for the data.
+ * @param {string|number} props.data - The data to be displayed in the statistics card.
+ * @param {string} [props.color] - The optional color to customize the card background and icon color.
+ * @param {BoxProps} [props.rest] - Additional BoxProps to be passed to the wrapping Box component.
+ *
+ * @returns {JSX.Element} The rendered JSX element representing the statistics card for mobile view.
+ */
 const StatsCardMobile = ({
   icon,
   title,
