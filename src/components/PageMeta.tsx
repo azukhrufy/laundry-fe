@@ -17,6 +17,18 @@ type PageMetaProps = {
   other?: any;
 };
 
+/**
+ * Represents the PageMeta component, responsible for setting meta information in the document's head.
+ * The component allows specifying the title, description, and other meta tags.
+ *
+ * @param {object} props - The props object containing the following properties:
+ * @param {string} props.title - The title of the page to be displayed in the document's head.
+ * @param {string} [props.description] - The description of the page to be displayed in the document's head.
+ * @param {JSX.Element} [props.other] - Additional JSX elements representing other meta tags to be added in the document's head.
+ *
+ * @returns {JSX.Element} The rendered JSX element representing the `PageMeta` component.
+ */
+
 export default function PageMeta({ title, description, other }: PageMetaProps) {
   return (
     <Head>

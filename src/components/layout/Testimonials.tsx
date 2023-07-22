@@ -1,6 +1,11 @@
 import { Avatar, Box, Stack, Text, useColorModeValue } from "@chakra-ui/react";
 import { motion } from "framer-motion";
 
+/**
+ * Represents a section with a large quote and testimonial for the iLaundry landing page.
+ * 
+ * @returns {JSX.Element} The rendered JSX element representing the WithLargeQuote section.
+ */
 export default function WithLargeQuote() {
   return (
     <Stack
@@ -11,6 +16,7 @@ export default function WithLargeQuote() {
       align={"center"}
       direction={"column"}
     >
+      {/* Testimonial Text */}
       <motion.div
         initial={{ opacity: 0, scale: 0.5 }}
         whileInView={{ opacity: 1, scale: 1 }}
@@ -21,9 +27,9 @@ export default function WithLargeQuote() {
         }}
       >
         <Text
-        fontSize={{ base: "2xl", md: "4xl" }}
-        textAlign={"center"}
-        color='#FF5A05'
+          fontSize={{ base: "2xl", md: "4xl" }}
+          textAlign={"center"}
+          color='#FF5A05'
         >
           Our Testimonials
         </Text>
@@ -39,6 +45,8 @@ export default function WithLargeQuote() {
           baik.
         </Text>
       </motion.div>
+
+      {/* Testimonial Author */}
       <motion.div
         initial={{ opacity: 0, scale: 0.5 }}
         whileInView={{ opacity: 1, scale: 1 }}
@@ -69,3 +77,4 @@ export default function WithLargeQuote() {
     </Stack>
   );
 }
+

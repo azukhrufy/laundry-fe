@@ -24,6 +24,18 @@ interface FeatureProps {
   icon?: ReactElement;
 }
 
+/**
+ * Represents a feature with an icon and text.
+ * 
+ * @typedef {object} FeatureProps - The properties for the Feature component.
+ * @property {string} FeatureProps.text - The text content for the feature.
+ * @property {JSX.Element} FeatureProps.icon - The JSX element representing the icon for the feature.
+ * @property {string} FeatureProps.iconBg - The background color of the icon.
+ * 
+ * @param {FeatureProps} props - The properties for the Feature component.
+ * 
+ * @returns {JSX.Element} The rendered JSX element representing the feature.
+ */
 const Feature = ({ text, icon, iconBg }: FeatureProps) => {
   return (
     <Stack direction={"row"} align={"center"}>
@@ -42,6 +54,11 @@ const Feature = ({ text, icon, iconBg }: FeatureProps) => {
   );
 };
 
+/**
+ * Represents a section with a split layout featuring an image and text content for the iLaundry landing page.
+ * 
+ * @returns {JSX.Element} The rendered JSX element representing the SplitWithImage section.
+ */
 export default function SplitWithImage() {
   return (
     <Flex
@@ -62,6 +79,7 @@ export default function SplitWithImage() {
         <Container maxW={"5xl"} py={12}>
           <SimpleGrid columns={{ base: 1, md: 2 }} spacing={10}>
             <Stack spacing={4}>
+              {/* Feature Title */}
               <Text
                 textTransform={"uppercase"}
                 color={"brand.primary.500"}
@@ -74,10 +92,16 @@ export default function SplitWithImage() {
               >
                 Get Started
               </Text>
+
+              {/* Main Heading */}
               <Heading>Mulai digitalisasikan bisnis laundry anda!</Heading>
+
+              {/* Description */}
               <Text color={"gray.500"} fontSize={"lg"}>
                 Dapatkan berbagai kemudahan dalam manajemen bisnis laundry anda dengan iLaundry.
               </Text>
+
+              {/* Feature Stack */}
               <Stack
                 spacing={4}
                 divider={
@@ -86,6 +110,7 @@ export default function SplitWithImage() {
                   />
                 }
               >
+                {/* Individual Features */}
                 <Feature
                   icon={
                     <Icon
@@ -114,6 +139,8 @@ export default function SplitWithImage() {
                 />
               </Stack>
             </Stack>
+
+            {/* Image */}
             <Flex>
               <Image
                 rounded={"md"}
@@ -130,3 +157,4 @@ export default function SplitWithImage() {
     </Flex>
   );
 }
+
