@@ -13,13 +13,24 @@ type Props = AppProps & {
   Component: Page;
 };
 
+/**
+ * Represents the custom Next.js App component, which acts as the entry point for rendering pages.
+ * It wraps the ChakraProvider and provides layout management for pages.
+ *
+ * @param {object} props - The props object containing the following properties:
+ * @param {ReactNode} props.Component - The NextPage component representing the current page.
+ * @param {object} props.pageProps - The pageProps object passed to the current page.
+ *
+ * @returns {JSX.Element} The rendered JSX element representing the `App` component.
+ */
 export default function App({ Component, pageProps }: Props) {
+  // Get the layout function defined in the Component or fallback to a default layout function
   const getLayout = Component.getLayout ?? ((page: ReactNode) => page);
+
   return (
-    // <CacheProvider>
     <ChakraProvider theme={theme}>
+      {/* Render the current page within the specified layout */}
       {getLayout(<Component {...pageProps} />)}
     </ChakraProvider>
-    // </CacheProvider>
   );
 }
