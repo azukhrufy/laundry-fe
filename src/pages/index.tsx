@@ -5,11 +5,7 @@ import Stories from "@/components/layout/Stories";
 import Testimonials from "@/components/layout/Testimonials";
 import {
   Box,
-  Button,
-  Heading,
-  Text,
   Flex,
-  Divider,
   Image,
 } from "@chakra-ui/react";
 import { motion } from "framer-motion";
