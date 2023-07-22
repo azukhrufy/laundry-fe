@@ -1,20 +1,16 @@
-import React, { ReactNode } from "react";
+import React, { ReactNode, Suspense } from "react";
 import {
   IconButton,
   Avatar,
   Box,
-  CloseButton,
   Flex,
   HStack,
   VStack,
-  Icon,
   useColorModeValue,
-  Link,
   Drawer,
   DrawerContent,
   Text,
   useDisclosure,
-  BoxProps,
   FlexProps,
   Menu,
   MenuButton,
@@ -25,17 +21,15 @@ import {
 import {
   FiHome,
   FiTrendingUp,
-  FiStar,
   FiSettings,
   FiMenu,
   FiBell,
   FiChevronDown,
   FiList,
 } from "react-icons/fi";
-import { IconType } from "react-icons";
-import { ReactText } from "react";
 import SidebarContent from "./SidebarContent";
 import LinkItemProps from "@/types/LinkItems";
+import LoadingOverlay from "../LoadingOverlay";
 
 const LinkItems: Array<LinkItemProps> = [
   { name: "Home", icon: FiHome, link: "/dashboard/home" },
@@ -43,13 +37,13 @@ const LinkItems: Array<LinkItemProps> = [
   {
     name: "Master Data",
     icon: FiList,
-    link: '/dashboard/data',
+    link: "/dashboard/data",
     submenu: [
       { name: "Services", link: "/dashboard/data/services" },
       { name: "Pelanggan", link: "/dashboard/data/pelanggan" },
     ],
   },
-  { name: "Settings", icon: FiSettings, link: '/dashboard/settings' },
+  { name: "Settings", icon: FiSettings, link: "/dashboard/settings" },
 ];
 
 export default function SidebarWithHeader({
@@ -82,7 +76,7 @@ export default function SidebarWithHeader({
       {/* mobilenav */}
       <MobileNav onOpen={onOpen} />
       <Box ml={{ base: 0, md: 60 }} p="4">
-        {children}
+        <Suspense fallback={<LoadingOverlay />}>{children}</Suspense>
       </Box>
     </Box>
   );

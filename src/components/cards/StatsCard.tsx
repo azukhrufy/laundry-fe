@@ -1,8 +1,6 @@
 import {
   Card,
-  CardHeader,
   CardBody,
-  CardFooter,
   Text,
   Flex,
   Icon,
@@ -21,7 +19,7 @@ interface StatsCardProps extends BoxProps {
 const StatsCard = ({ icon, title, data, color, ...rest }: StatsCardProps) => {
   return (
     <Box {...rest}>
-      <Card {...rest}>
+      <Card {...rest} bg='white'>
         <CardBody py={2} px={4}>
           <Flex
             align="center"

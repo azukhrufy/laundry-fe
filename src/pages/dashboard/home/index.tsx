@@ -1,8 +1,6 @@
 import {
   Box,
-  Flex,
   Grid,
-  GridItem,
   Stat,
   StatArrow,
   StatGroup,
@@ -10,11 +8,11 @@ import {
   StatLabel,
   StatNumber,
 } from "@chakra-ui/react";
-import { IconType } from "react-icons";
 import { FiActivity, FiCheck, FiTrendingUp, FiUsers } from "react-icons/fi";
 import SidebarWithHeader from "@/components/layout/dashboard";
 import StatsCardMobile from "@/components/cards/StatsCardMobile";
 import StatsCard from "@/components/cards/StatsCard";
+import PageMeta from "@/components/PageMeta";
 
 const cardItems = [
   { title: "Total Transaksi", icon: FiTrendingUp, data: 50, color: "pink" },
@@ -23,12 +21,24 @@ const cardItems = [
   { title: "Transaksi Berjalan", icon: FiActivity, data: 25, color: "orange" },
 ];
 
-const Home = () => {
+Home.getLayout = function getLayout(page: any) {
+  return <SidebarWithHeader>{page}</SidebarWithHeader>;
+};
+
+/**
+ * @returns {JSX.Element}
+ */
+export default function Home() {
   return (
-    <SidebarWithHeader>
+    <>
+      <PageMeta title="Home" />
       <Box minH="100vh">
         <Box display={{ base: "none", md: "block" }}>
-          <Grid templateColumns={{md: "repeat(2, 1fr)", lg:"repeat(4, 1fr)"}} gap={{ md: 2, xl: 4 }} flexWrap='wrap'>
+          <Grid
+            templateColumns={{ md: "repeat(2, 1fr)", lg: "repeat(4, 1fr)" }}
+            gap={{ md: 2, xl: 4 }}
+            flexWrap="wrap"
+          >
             {cardItems.map((item) => (
               <>
                 <StatsCard
@@ -57,10 +67,10 @@ const Home = () => {
             ))}
           </Grid>
         </Box>
-        <Box bg="white" mt={4} borderRadius="lg" py={3} px={4}>
+        <Box bg="white" my={4} borderRadius="lg" py={3} px={4}>
           <StatGroup>
             <Stat>
-              <StatLabel>Pemasukkan Bulanan</StatLabel>
+              <StatLabel color='gray.500'>Avg. Pemasukkan Bulanan</StatLabel>
               <StatNumber>3,345,670</StatNumber>
               <StatHelpText>
                 <StatArrow type="increase" />
@@ -69,7 +79,7 @@ const Home = () => {
             </Stat>
 
             <Stat>
-              <StatLabel>Pemasukkan Mingguan</StatLabel>
+              <StatLabel color='gray.500'>Avg. Pemasukkan Mingguan</StatLabel>
               <StatNumber>350,000</StatNumber>
               <StatHelpText>
                 <StatArrow type="increase" />
@@ -79,8 +89,6 @@ const Home = () => {
           </StatGroup>
         </Box>
       </Box>
-    </SidebarWithHeader>
+    </>
   );
-};
-
-export default Home;
+}
