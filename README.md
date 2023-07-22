@@ -1,34 +1,43 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# iLaundry - by FTS
 
-## Getting Started
+[![License](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT) 
 
-First, run the development server:
+[![DeepSource](https://app.deepsource.com/gh/azukhrufy/laundry-fe.svg/?label=active+issues&show_trend=true&token=s9Wrnb3ERajNLoY6l8ambDm1)](https://app.deepsource.com/gh/azukhrufy/laundry-fe/?ref=repository-badge)
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-```
+[![SonarCloud](https://sonarcloud.io/images/project_badges/sonarcloud-white.svg)](https://sonarcloud.io/summary/new_code?id=azukhrufy_laundry-fe)
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Overview
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+iLaundry is a comprehensive and user-friendly application designed to streamline and automate laundry business operations. Whether you run a small neighborhood laundry service or a chain of commercial laundry facilities, iLaundry has got you covered. This application provides a robust set of features to manage every aspect of your laundry business efficiently.
 
-## Learn More
+## Key Features
 
-To learn more about Next.js, take a look at the following resources:
+- **Customer Management**: Easily add, edit, and manage customer profiles, keeping track of their laundry preferences, contact information, and order history.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- **Order Processing**: Simplify the order intake process, allowing customers to place orders through the app or in-store, and keep track of the status of each order.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+- **Pricing and Invoicing**: Define pricing based on various criteria (e.g., weight, garment type) and generate invoices for completed orders.
 
-## Deploy on Vercel
+- **Inventory Management**: Keep tabs on laundry supplies and materials, ensuring you never run out of essential items.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- **Staff Management**: Assign roles and responsibilities to staff members, enabling them to handle orders and track their productivity.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+- **Reporting and Analytics**: Gain valuable insights into your business's performance with detailed reports on revenue, customer trends, and more.
+
+- **Notifications**: Keep customers informed about the status of their orders through automated notifications.
+
+## Technologies Used
+
+- Frontend: React.js, Redux, Bootstrap
+- Backend: Node.js, Express.js
+- Database: MongoDB
+- Authentication: JSON Web Tokens (JWT)
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## Support
+
+If you encounter any issues or have questions, feel free to [open an issue](link-to-issues) in this repository.
