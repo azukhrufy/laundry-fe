@@ -1,7 +1,7 @@
 import LoadingOverlay from "@/components/LoadingOverlay";
 import PageMeta from "@/components/PageMeta";
 import SidebarWithHeader from "@/components/layout/dashboard";
-import { Suspense, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 import { useTransactionsList } from "@/swrs/useTransactions";
 import StaticTable from "@/components/table/StaticTable";
 import {
@@ -74,6 +74,13 @@ const Transaction = () => {
       setSearchResult(data);
     }
   };
+
+  useEffect(() => {
+    if(data){
+      setSearchResult(data)
+    }
+  },[data])
+  
   if (!data) return <LoadingOverlay />;
   return (
     <>
@@ -97,7 +104,7 @@ const Transaction = () => {
             Add Transaction
           </Button>
           <InputGroup maxWidth="300px">
-            <InputLeftAddon children={<FiSearch />} />
+            <InputLeftAddon><FiSearch /></InputLeftAddon>
             <Input
               name="searchValue"
               placeholder="Ketik Nama Pelanggan"
