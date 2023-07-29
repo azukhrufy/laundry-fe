@@ -4,6 +4,8 @@ import theme from "@/theme/theme";
 import { ReactNode } from "react";
 import { AppProps } from "next/app";
 import type { NextPage } from "next";
+// swr
+import { SWRConfig } from 'swr'
 
 type Page<P = {}> = NextPage<P> & {
   getLayout?: (page: ReactNode) => ReactNode;
@@ -12,6 +14,12 @@ type Page<P = {}> = NextPage<P> & {
 type Props = AppProps & {
   Component: Page;
 };
+// SWR Config
+const SWRConfigValue = {
+  refreshInterval: 0,
+  shouldRetryOnError: false,
+  revalidateOnFocus: true
+}
 
 /**
  * Represents the custom Next.js App component, which acts as the entry point for rendering pages.
@@ -28,9 +36,11 @@ export default function App({ Component, pageProps }: Props) {
   const getLayout = Component.getLayout ?? ((page: ReactNode) => page);
 
   return (
+    <SWRConfig value={SWRConfigValue}>
     <ChakraProvider theme={theme}>
       {/* Render the current page within the specified layout */}
       {getLayout(<Component {...pageProps} />)}
     </ChakraProvider>
+    </SWRConfig>
   );
 }

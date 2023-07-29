@@ -3,8 +3,8 @@ const withBundleAnalyzer = require('@next/bundle-analyzer')({
     enabled: process.env.ANALYZE === 'true',
   });
 const nextConfig = withBundleAnalyzer({
-  reactStrictMode: true,
-  concurrentFeatures: true,
+  reactStrictMode: false,
+  // concurrentFeatures: true,
 })
 
 module.exports = nextConfig
