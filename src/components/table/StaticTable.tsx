@@ -27,7 +27,7 @@ export default function StaticTable({ column, data, showIndex }: any) {
               if (col.title) {
                 return <Th key={col?.title + index}>{col?.title}</Th>;
               }
-              return <Th key={`col${index}`}>{col?.titleAction}</Th>;
+              return <Th key={`col${index}`}>{col?.titleAction(data)}</Th>;
             })}
           </Tr>
         </Thead>

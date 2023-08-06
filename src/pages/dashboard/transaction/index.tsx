@@ -1,9 +1,6 @@
-import LoadingOverlay from "@/components/LoadingOverlay";
-import PageMeta from "@/components/PageMeta";
-import SidebarWithHeader from "@/components/layout/dashboard";
-import { Suspense, useEffect, useState } from "react";
-import { useTransactionsList } from "@/swrs/useTransactions";
-import StaticTable from "@/components/table/StaticTable";
+//  next
+import dynamic from "next/dynamic";
+// @chakra-ui
 import {
   Box,
   Button,
@@ -11,11 +8,22 @@ import {
   Input,
   InputGroup,
   InputLeftAddon,
+  Text,
   useDisclosure,
 } from "@chakra-ui/react";
-import AddTransaction from "@/sections/modals/AddTransaction";
+
+// components
+import LoadingOverlay from "@/components/LoadingOverlay";
+import PageMeta from "@/components/PageMeta";
+import SidebarWithHeader from "@/components/layout/dashboard";
+import { Suspense, useEffect, useState } from "react";
+import { useTransactionsList } from "@/swrs/useTransactions";
+import StaticTable from "@/components/table/StaticTable";
 import { BiAddToQueue } from "react-icons/bi";
-import { FiSearch } from "react-icons/fi";
+import { FiSearch, FiTrash, FiEdit } from "react-icons/fi";
+const AddTransaction = dynamic(
+  () => import("@/sections/modals/AddTransaction")
+);
 
 /**
  * Represents the Transaction page component, displaying a title, meta information, and content related to transactions.
@@ -32,7 +40,7 @@ const Transaction = () => {
       title: "Tgl Transaksi",
       row: (data: any) => {
         const d = new Date(data.createdAt);
-        return d.toLocaleString();
+        return d.toLocaleString('ID-id');
       },
     },
     {
@@ -55,7 +63,49 @@ const Transaction = () => {
       title: "Estimasi Selesai",
       row: (data: any) => {
         const d = new Date(data.estimatedFinished);
-        return d.toLocaleString();
+        return d.toLocaleString('ID-id');
+      },
+    },
+    {
+      titleAction: () => {
+        return(
+          <Flex justifyContent='center'>
+            <Text>Action</Text>
+          </Flex>
+        )
+      },
+      row: (data: any) => {
+        return (
+          <Flex
+            flexDirection="row"
+            gap={2}
+            justifyContent="center"
+            alignItems="center"
+          >
+            <Box
+              cursor="pointer"
+              color="green.500"
+              fontSize="18px"
+              background="green.50"
+              p={2}
+              borderRadius="full"
+              _hover={{background: 'green.100'}}
+            >
+              <FiEdit />
+            </Box>
+            <Box
+              cursor="pointer"
+              color="red.500"
+              fontSize="18px"
+              background="red.50"
+              p={2}
+              borderRadius="full"
+              _hover={{background: 'red.100'}}
+            >
+              <FiTrash />
+            </Box>
+          </Flex>
+        );
       },
     },
   ];
@@ -76,11 +126,11 @@ const Transaction = () => {
   };
 
   useEffect(() => {
-    if(data){
-      setSearchResult(data)
+    if (data) {
+      setSearchResult(data);
     }
-  },[data])
-  
+  }, [data]);
+
   if (!data) return <LoadingOverlay />;
   return (
     <>
@@ -104,7 +154,9 @@ const Transaction = () => {
             Add Transaction
           </Button>
           <InputGroup maxWidth="300px">
-            <InputLeftAddon><FiSearch /></InputLeftAddon>
+            <InputLeftAddon>
+              <FiSearch />
+            </InputLeftAddon>
             <Input
               name="searchValue"
               placeholder="Ketik Nama Pelanggan"

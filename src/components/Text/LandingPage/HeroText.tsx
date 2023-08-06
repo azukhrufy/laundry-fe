@@ -19,7 +19,7 @@ const HeroText = () => {
       </Text>
 
       {/* Subtitle - "Dalam 1 Aplikasi" */}
-      <Text fontWeight="semibold" fontSize={{base:35, lg: 50}} lineHeight={1.2} color="white">
+      <Text fontWeight="semibold" fontSize={{base:35, lg: 50, '2xl': 65}} lineHeight={1.2} color="white">
         Dalam 1 Aplikasi
       </Text>
 
@@ -27,13 +27,13 @@ const HeroText = () => {
       <Divider color="white" my={15} alignItems="center" />
 
       {/* Description */}
-      <Text fontWeight="semibold" color="white" opacity="70%">
+      <Text fontWeight="semibold" color="white" opacity="70%" fontSize={{base:'sm', lg: 'normal', '2xl': 'xl'}}>
         iLaundry merupakan aplikasi berbasis web dan mobile yang menjadi all in
         one solution untuk kebutuhan usaha laundry anda
       </Text>
 
       {/* Call-to-action buttons */}
-      <Flex alignItems="center" justifyContent="center" my={43} gap={8}>
+      <Flex alignItems="center" justifyContent={{base: "center", lg:'flex-start'}} my={43} gap={8}>
         <Button
           colorScheme="brand.complementary"
           variant="solid"

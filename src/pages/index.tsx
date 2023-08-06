@@ -61,6 +61,7 @@ export default function Home() {
                   src="/images/example.svg"
                   width={{ base: 300, md: 600 }}
                   justifyContent="center"
+                  alt="example-ilaundry"
                 />
               </motion.div>
 
@@ -113,8 +114,9 @@ export default function Home() {
                 >
                   <Image
                     src="/images/example.svg"
-                    width={600}
+                    width={{base: 600, '2xl' : 800}}
                     px={{ md: 5, lg: 10 }}
+                    alt="example-ilaundry"
                   />
                 </motion.div>
               </div>
