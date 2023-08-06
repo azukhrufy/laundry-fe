@@ -16,7 +16,7 @@ import {
 import LoadingOverlay from "@/components/LoadingOverlay";
 import PageMeta from "@/components/PageMeta";
 import SidebarWithHeader from "@/components/layout/dashboard";
-import { Suspense, useEffect, useState } from "react";
+import { Suspense, useCallback, useEffect, useState } from "react";
 import { useTransactionsList } from "@/swrs/useTransactions";
 import StaticTable from "@/components/table/StaticTable";
 import { BiAddToQueue } from "react-icons/bi";
@@ -40,7 +40,7 @@ const Transaction = () => {
       title: "Tgl Transaksi",
       row: (data: any) => {
         const d = new Date(data.createdAt);
-        return d.toLocaleString('ID-id');
+        return d.toLocaleString("ID-id");
       },
     },
     {
@@ -63,16 +63,16 @@ const Transaction = () => {
       title: "Estimasi Selesai",
       row: (data: any) => {
         const d = new Date(data.estimatedFinished);
-        return d.toLocaleString('ID-id');
+        return d.toLocaleString("ID-id");
       },
     },
     {
       titleAction: () => {
-        return(
-          <Flex justifyContent='center'>
+        return (
+          <Flex justifyContent="center">
             <Text>Action</Text>
           </Flex>
-        )
+        );
       },
       row: (data: any) => {
         return (
@@ -89,7 +89,7 @@ const Transaction = () => {
               background="green.50"
               p={2}
               borderRadius="full"
-              _hover={{background: 'green.100'}}
+              _hover={{ background: "green.100" }}
             >
               <FiEdit />
             </Box>
@@ -100,7 +100,7 @@ const Transaction = () => {
               background="red.50"
               p={2}
               borderRadius="full"
-              _hover={{background: 'red.100'}}
+              _hover={{ background: "red.100" }}
             >
               <FiTrash />
             </Box>
@@ -111,19 +111,22 @@ const Transaction = () => {
   ];
 
   // functions
-  const handleSearch = (e: any) => {
-    if (e.target.value.length > 0) {
-      setIsSearchActive(true);
-      setSearchResult((prev: any) =>
-        prev.filter((prev: any) =>
-          prev.customerId.toLowerCase().includes(e.target.value.toLowerCase())
-        )
-      );
-    } else {
-      setIsSearchActive(false);
-      setSearchResult(data);
-    }
-  };
+  const handleSearch = useCallback((e: any) => {
+    setTimeout(() => {
+      if (e.target.value.length > 0) {
+        console.log(e.target.value, "Value");
+        setIsSearchActive(true);
+        setSearchResult(() =>
+          data.filter((prev: any) =>
+            prev.customerId.toLowerCase().includes(e.target.value.toLowerCase())
+          )
+        );
+      } else {
+        setIsSearchActive(false);
+        setSearchResult(data);
+      }
+    }, 300);
+  }, []);
 
   useEffect(() => {
     if (data) {
@@ -149,7 +152,10 @@ const Transaction = () => {
           <Button
             leftIcon={<BiAddToQueue />}
             colorScheme="green"
-            onClick={handleAddTransactionModal.onOpen}
+            onClick={(e) => {
+              e.preventDefault();
+              handleAddTransactionModal.onOpen();
+            }}
           >
             Add Transaction
           </Button>
@@ -160,7 +166,10 @@ const Transaction = () => {
             <Input
               name="searchValue"
               placeholder="Ketik Nama Pelanggan"
-              onChange={(e) => handleSearch(e)}
+              onChange={(e) => {
+                e.preventDefault();
+                handleSearch(e);
+              }}
             />
           </InputGroup>
         </Flex>

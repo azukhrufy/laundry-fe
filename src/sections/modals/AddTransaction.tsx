@@ -13,27 +13,35 @@ import {
   Select,
   Text,
 } from "@chakra-ui/react";
-import { useState } from "react";
+import { useState, memo, useRef, useMemo, useCallback } from "react";
 
-export default function AddTransaction({ isOpen, onClose, mutate }: any) {
-  const [customerId, setCustomerId] = useState("");
-  const [total, setTotal] = useState(0);
-  const [weight, setWeight] = useState(0.0);
+const AddTransaction = memo(function AddTransaction({
+  isOpen,
+  onClose,
+  mutate,
+}: any) {
+  const custIdRef = useRef<HTMLInputElement>(null);
+  const weightRef = useRef<HTMLInputElement>(null);
   const [serviceId, setServiceId] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const handleServiceChange = (e: any) => {
-    setServiceId(e.target.value);
-    if (e.target.value === "Kilat") {
-      setTotal(weight * 7500);
-    } else if (e.target.value === "Normal") {
-      setTotal(weight * 5000);
+
+  const setTotal = useCallback((weight: any, service: any) => {
+    if (service === "Kilat") {
+      return weight.current?.value * 7500;
+    } else if (service === "Normal") {
+      return weight.current?.value * 5000;
     }
-  };
+  }, []);
+
+  const total = useMemo(
+    () => setTotal(weightRef, serviceId),
+    [weightRef, serviceId]
+  );
 
   const handleSubmit = async () => {
     const value = {
-      customerId: customerId,
-      weight: weight,
+      customerId: custIdRef.current?.value,
+      weight: weightRef.current?.value,
       serviceId: serviceId,
       total: total,
     };
@@ -42,6 +50,7 @@ export default function AddTransaction({ isOpen, onClose, mutate }: any) {
     mutate();
     onClose();
   };
+
   return (
     <>
       <Modal isOpen={isOpen} onClose={onClose}>
@@ -54,23 +63,24 @@ export default function AddTransaction({ isOpen, onClose, mutate }: any) {
               <Input
                 name="customerId"
                 placeholder="Masukkan Nama Customer"
-                onChange={(e) => setCustomerId(e.target.value)}
+                ref={custIdRef}
               />
               <Input
                 name="weight"
                 placeholder="Berat Total"
-                onChange={(e) => setWeight(parseFloat(e.target.value))}
+                type="number"
+                ref={weightRef}
               />
               <Select
                 placeholder="--Pilih Tipe Service--"
-                onChange={(e) => handleServiceChange(e)}
+                onChange={(e) => setServiceId(e.currentTarget.value)}
               >
                 <option value="Kilat">Kilat</option>
                 <option value="Normal">Normal</option>
               </Select>
               <Flex flexDirection="row" gap={2}>
                 <Text color="gray.500">Total Harga :</Text>
-                <Text>{total}</Text>
+                <Text>{total ?? 0}</Text>
               </Flex>
             </Flex>
           </ModalBody>
@@ -79,7 +89,7 @@ export default function AddTransaction({ isOpen, onClose, mutate }: any) {
               colorScheme="green"
               mr={3}
               isLoading={isSubmitting}
-              loadingText='Submitting'
+              loadingText="Submitting"
               disabled={isSubmitting}
               onClick={(e) => {
                 e.preventDefault();
@@ -97,4 +107,6 @@ export default function AddTransaction({ isOpen, onClose, mutate }: any) {
       </Modal>
     </>
   );
-}
+});
+
+export default AddTransaction;
