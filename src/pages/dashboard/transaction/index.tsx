@@ -19,8 +19,10 @@ import SidebarWithHeader from "@/components/layout/dashboard";
 import { Suspense, useCallback, useEffect, useState } from "react";
 import { useTransactionsList } from "@/swrs/useTransactions";
 import StaticTable from "@/components/table/StaticTable";
-import { BiAddToQueue } from "react-icons/bi";
-import { FiSearch, FiTrash, FiEdit } from "react-icons/fi";
+import { FiSearch, FiTrash, FiEdit, FiPlus } from "react-icons/fi";
+import DeleteModal from "@/sections/modals/DeleteTransaction";
+import transactionService from "@/services/transaction";
+import ListContainer from "@/components/list/ListContainer";
 const AddTransaction = dynamic(
   () => import("@/sections/modals/AddTransaction")
 );
@@ -34,7 +36,9 @@ const Transaction = () => {
   const { data, mutate } = useTransactionsList();
   const [isSearchActive, setIsSearchActive] = useState(false);
   const [searchResult, setSearchResult] = useState(data);
+  const [activeId, setActiveId] = useState("");
   const handleAddTransactionModal = useDisclosure();
+  const handleDeleteModal = useDisclosure();
   const column = [
     {
       title: "Tgl Transaksi",
@@ -101,6 +105,11 @@ const Transaction = () => {
               p={2}
               borderRadius="full"
               _hover={{ background: "red.100" }}
+              onClick={(e) => {
+                e.preventDefault();
+                setActiveId(data);
+                handleDeleteModal.onOpen();
+              }}
             >
               <FiTrash />
             </Box>
@@ -128,6 +137,11 @@ const Transaction = () => {
     }, 300);
   }, []);
 
+  const handleDeleteTransaction = useCallback(async (e: any) => {
+    await transactionService.deleteTransaction(e);
+    await mutate();
+  }, []);
+
   useEffect(() => {
     if (data) {
       setSearchResult(data);
@@ -136,7 +150,7 @@ const Transaction = () => {
 
   if (!data) return <LoadingOverlay />;
   return (
-    <>
+    <Box position="relative" zIndex="30" height="88vh">
       {/* Page Meta component for SEO and meta information */}
       <PageMeta title="Transaction" />
 
@@ -150,7 +164,8 @@ const Transaction = () => {
       >
         <Flex flexDirection="row" justifyContent="space-between">
           <Button
-            leftIcon={<BiAddToQueue />}
+            display={{ base: "none", md: "block" }}
+            leftIcon={<FiPlus />}
             colorScheme="green"
             onClick={(e) => {
               e.preventDefault();
@@ -159,7 +174,7 @@ const Transaction = () => {
           >
             Add Transaction
           </Button>
-          <InputGroup maxWidth="300px">
+          <InputGroup maxWidth={{ base: "full", md: "300px" }}>
             <InputLeftAddon>
               <FiSearch />
             </InputLeftAddon>
@@ -174,18 +189,50 @@ const Transaction = () => {
           </InputGroup>
         </Flex>
       </Box>
-      <Box backgroundColor="white" borderRadius={8} padding={2}>
+      <Box backgroundColor="white" borderRadius={8} padding={2} display={{base: 'none', md: 'block'}}>
         <StaticTable
           column={column}
           data={isSearchActive ? searchResult : data}
         />
+      </Box>
+      <Box display={{base: 'block', md: 'none'}} height='75vh' overflow='scroll'>
+        <ListContainer 
+          data={isSearchActive ? searchResult : data}
+        />
+      </Box>
+      <Box
+        display={{ base: "block", md: "none" }}
+        position="absolute"
+        zIndex="50"
+        backgroundColor="green"
+        rounded="full"
+        color="white"
+        top="unset"
+        right="0"
+        bottom="0"
+        p={6}
+        fontSize={32}
+        onClick={(e) => {
+          e.preventDefault();
+          handleAddTransactionModal.onOpen();
+        }}
+      >
+        <FiPlus />
       </Box>
       <AddTransaction
         isOpen={handleAddTransactionModal.isOpen}
         onClose={handleAddTransactionModal.onClose}
         mutate={mutate}
       />
-    </>
+      <DeleteModal
+        isOpen={handleDeleteModal.isOpen}
+        onClose={handleDeleteModal.onClose}
+        data={activeId}
+        callback={(e: any) => {
+          handleDeleteTransaction(e);
+        }}
+      />
+    </Box>
   );
 };
 

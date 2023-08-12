@@ -33,7 +33,7 @@ export function getEndpointUrl(path : string) {
  * @param {Object} params
  * @param {string} token
  */
-export function serviceDelete({endpoint, params, token} : any) {
+export function serviceDelete(endpoint : any, params : any, token : any) {
   return axios.delete(getEndpointUrl(endpoint), {
     headers: token ? { Authorization: `Bearer ${token}` } : {},
     params
